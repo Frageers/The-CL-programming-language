@@ -19,25 +19,25 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    map<string, int> environment;
     string line;
 
-    while (getline(file, line)) {
-        if (line.empty()) continue;
+    map<string,int> envNum;
+    map<string,string> envStr;
 
-        // Tokenize one line at a time
+    while (getline(file, line)) {
         vector<Token> tokens = tokenize(line);
         size_t pos = 0;
 
         if (tokens.empty()) continue;
 
         if (tokens[pos].type == Let) {
-            parseMakeStatement(tokens, environment, pos);
+            parseMakeStatement(tokens, envNum, envStr, pos);
         }
         else if (tokens[pos].type == Output) {
-            parseOutputStatement(tokens, pos, environment);
+            parseOutputStatement(tokens, pos, envNum, envStr);
         }
     }
+
 
     return 0;
 }

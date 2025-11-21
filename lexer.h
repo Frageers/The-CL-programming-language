@@ -13,7 +13,8 @@ enum TokenType {
     CloseParen,
     BinaryOperator,
     Let,
-    Output
+    Output,
+    String
 };
 
 struct Token {

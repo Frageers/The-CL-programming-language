@@ -10,7 +10,7 @@ Expression* parseExpression(vector<Token>& tokens, size_t &pos);
 Expression* parseFactor(vector<Token>& tokens, size_t &pos);
 
 Expression* parseExpression(vector<Token>& tokens, size_t &pos);
-void parseMakeStatement(vector<Token>& tokens, map<string,int>& env, size_t &pos);
+void parseMakeStatement(vector<Token>& tokens, map<string,int>& envNum, map<string,string>& envStr, size_t &pos);
 
 
-void parseOutputStatement(vector<Token>& tokens, size_t& pos, map<string,int>& env);
+void parseOutputStatement(vector<Token>& tokens, size_t &pos, map<string,int>& envNum, map<string,string>& envStr);

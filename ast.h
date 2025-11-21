@@ -13,11 +13,21 @@ struct NumberExpr : Expression {
     int evaluate(map<string,int>& env) override { return value; }
 };
 
-struct VariableExpr : Expression {
+class VariableExpr : public Expression {
+public:
     string name;
-    VariableExpr(const string &n) : name(n) {}
-    int evaluate(map<string,int>& env) override { return env[name]; }
+
+    VariableExpr(string n) : name(n) {}
+
+    int evaluate(map<string,int>& envNum) override {
+        return envNum[name];
+    }
+
+    string evaluateString(map<string,string>& envStr) {
+        return envStr[name];
+    }
 };
+
 
 struct BinaryExpr : Expression {
     Expression* left;
@@ -30,5 +40,20 @@ struct BinaryExpr : Expression {
         if(op == "*") return left->evaluate(env) * right->evaluate(env);
         if(op == "/") return left->evaluate(env) / right->evaluate(env);
         return 0;
+    }
+};
+
+class StringExpr : public Expression {
+public:
+    string value;
+
+    StringExpr(const string& v) : value(v) {}
+
+    int evaluate(map<string,int>& envNum) override {
+        return 0; // numbers only
+    }
+
+    string evaluateString(map<string,string>& envStr) {
+        return value;
     }
 };
